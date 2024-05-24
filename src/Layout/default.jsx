@@ -63,7 +63,7 @@ export default DefaultLayout;
 
 const DftLaySty = styled.div`
    
-    background-color: #f7f7f7;
+    background-image: url('src/assets/photo/defaultBackGround.jpg');
     height: 100vh;
     width: 100vw;
     position: relative;

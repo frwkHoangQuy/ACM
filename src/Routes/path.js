@@ -1,7 +1,8 @@
 const paths = {
-    home: "/",
+    login: "/",
+    home: "/home",
     planner: "/planner",
-    noPage: "*"
+    noPage: "*",
 }
 
 export default paths;
