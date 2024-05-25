@@ -67,16 +67,17 @@ export default Login;
 
 const LoginStyled = styled.div`
   font-family: 'Poppins', sans-serif;
+  user-select: none;
   font-weight: 300;
   line-height: 3;
   background-color: #1F2029;
   background-image: url(src/assets/photo/defaultBackGround.jpg);
-  color: #ffeba7;
+  color: #a6ff7d;
   a:hover {
 	  text-decoration: none;
   }
   .link {
-    color: #ffeba7;
+    color: #a6ff7d;
   }
   .link:hover {
     color: #c4c3ca;
@@ -117,7 +118,7 @@ const LoginStyled = styled.div`
     padding: 0;
     margin: 10px auto;
     cursor: pointer;
-    background-color: #ffeba7;
+    background-color: #a6ff7d;
   }
   .checkbox:checked + label:before,
   .checkbox:not(:checked) + label:before{
@@ -126,7 +127,7 @@ const LoginStyled = styled.div`
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    color: #ffeba7;
+    color: #a6ff7d;
     background-color: #020305;
     font-family: 'unicons';
     content: '\\eb4f';
@@ -239,12 +240,12 @@ const LoginStyled = styled.div`
     display: -ms-inline-flexbox;
     display: inline-flex;
     align-items: center;
-    background-color: #ffeba7;
+    background-color: #a6ff7d;
     color: #000000;
   }
   .btn:hover{  
     background-color: #000000;
-    color: #ffeba7;
+    color: #a6ff7d;
     box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
   }
   `
