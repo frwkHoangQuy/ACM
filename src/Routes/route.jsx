@@ -3,6 +3,7 @@ import Home from "../Page/Home"
 import NoPage from "../Page/NoPage"
 import Planner from "../Page/Planner.mobile"
 import Login from "../Page/Login"
+import Notification from "../Page/Notification"
 import paths from "./path"
 
 
@@ -17,6 +18,12 @@ export const routes = [
         name: "home",
         page: <DefaultLayout><Home /></DefaultLayout>,
         path: paths.home,
+        exact: true,
+    },
+    {
+        name: "notification",
+        page: <DefaultLayout><Notification /></DefaultLayout>,
+        path: paths.notification,
         exact: true,
     },
     {
