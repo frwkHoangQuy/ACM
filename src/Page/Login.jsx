@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import defaultBackGround from '../assets/photo/defaultBackGround.jpg'
 
 const Login = () => {
   return (
@@ -71,7 +71,7 @@ const LoginStyled = styled.div`
   font-weight: 300;
   line-height: 3;
   background-color: #1F2029;
-  background-image: url(src/assets/photo/defaultBackGround.jpg);
+  background-image: url(${defaultBackGround});
   color: #a6ff7d;
   a:hover {
 	  text-decoration: none;

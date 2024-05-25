@@ -7,7 +7,7 @@ import DeviceContext from "../Context/Device.context";
 import Header from "./Component/Header";
 import OverlayContext, { OverlayProvider } from "../Context/overlay.context";
 import { ModalProvider } from "../Context/Modal.conetxt";
-
+import defaultBackGround from '../assets/photo/defaultBackGround.jpg';
 
 const DefaultLayout = ( p ) => {
     const { children } = p
@@ -63,7 +63,7 @@ export default DefaultLayout;
 
 const DftLaySty = styled.div`
    
-    background-image: url('src/assets/photo/defaultBackGround.jpg');
+    background-image: url(${defaultBackGround});
     height: 100vh;
     width: 100vw;
     position: relative;
