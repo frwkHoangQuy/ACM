@@ -9,15 +9,15 @@ import OverlayContext, { OverlayProvider } from "../Context/overlay.context";
 import { ModalProvider } from "../Context/Modal.conetxt";
 import defaultBackGround from '../assets/photo/defaultBackGround.jpg';
 
-const DefaultLayout = ( p ) => {
+const DefaultLayout = (p) => {
     const { children } = p
 
     return (
-    <ModalProvider>
-        <OverlayProvider>
-            <DefaultLayoutComponent>{children}</DefaultLayoutComponent>
-        </OverlayProvider>
-    </ModalProvider>
+        <ModalProvider>
+            <OverlayProvider>
+                <DefaultLayoutComponent>{children}</DefaultLayoutComponent>
+            </OverlayProvider>
+        </ModalProvider>
     )
 }
 
@@ -39,18 +39,18 @@ const DefaultLayoutComponent = (p) => {
     const toggleSideBar = (boolen) => {
         return () => {
             setIsOpenMenu(boolen)
-            boolen 
+            boolen
                 ? openOverlay()
                 : closeOverlay()
         }
     }
 
     return (
-        <DftLaySty device={device} > 
-            {device === "mobile" && <Header toggleSideBar={toggleSideBar}/>}
+        <DftLaySty device={device} >
+            {device === "mobile" && <Header toggleSideBar={toggleSideBar} />}
             <div className="body">
-                <Sidebar isopen={isOpenMenu} toggle={toggleSideBar}/>
-                <Overlay onClick={hdleClickOverLay}/>
+                <Sidebar isopen={isOpenMenu} toggle={toggleSideBar} />
+                <Overlay onClick={hdleClickOverLay} />
                 <div className="page-content">
                     {children}
                 </div>
@@ -58,7 +58,7 @@ const DefaultLayoutComponent = (p) => {
         </DftLaySty>
     )
 }
- 
+
 export default DefaultLayout;
 
 const DftLaySty = styled.div`
@@ -73,7 +73,7 @@ const DftLaySty = styled.div`
         flex-direction: row;
 
         .page-content {
-            margin-left: ${({device}) => device === "desktop" ? "var(--sidebar-wt)" : "0px" };
+            margin-left: ${({ device }) => device === "desktop" ? "var(--sidebar-wt)" : "0px"};
             width: 100%;
 
             @media (max-width: 768px) {
@@ -83,6 +83,9 @@ const DftLaySty = styled.div`
             @media (min-width: 769px) {
                 height: 100vh;
             }
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
         }
     }
 
