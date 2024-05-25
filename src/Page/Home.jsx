@@ -1,13 +1,23 @@
+import React from "react";
 import styled from "styled-components";
+import {useNavigate} from 'react-router-dom';
 
 const Home = () => {
+    const navigate = useNavigate();
+    const handleNotificationClick  = () => {
+        navigate('/home/notification')
+    }
+    
+    const handleCelebrationClick = () => {
+        navigate('/home/celebration')
+    }
     return (
         <Container>
             <ChooseContent>
                 <Title>Choose which you want to show ?</Title>
                 <Choice>
-                    <div>Notification</div>
-                    <div>Celebration</div>
+                    <div onClick={handleNotificationClick}>Notification</div>
+                    <div onClick={handleCelebrationClick}>Celebration</div>
                 </Choice>
             </ChooseContent>
         </Container>
