@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NotificationBlock from "../Component/NotificationBlock";
 import styled from "styled-components";
+import { getNotifications } from "../API/Notification";
 
 const Notification = () => {
+  const [notificationData, setNotificationData] = useState([])
+  const fetchNotificationData = async () => {
+    try {
+      const response = await getNotifications();
+      setNotificationData(response.data);
+    } catch (error) {
+      console.log('Error')
+    }
+  }
+  useEffect(() => {
+    fetchNotificationData();
+  }, [])
   return (
     <NotificationStyled>
       <Header>
         <LeftGroup>
           <p>Notification by</p>
-          <select>
-            <option selected="selected">newest to oldest</option>
+          <select defaultValue="newest to oldest">
+            <option>newest to oldest</option>
             <option>oldest to newest</option>
             <option>label</option>
             <option>sender</option>
@@ -19,7 +32,14 @@ const Notification = () => {
           <input placeholder="Find something ..."></input>
         </RightGroup>
       </Header>
-      <NotificationBlock />
+      {
+        notificationData.map((value) => {
+          return (
+            <NotificationBlock
+              data={value}
+            />)
+        })
+      }
     </NotificationStyled>
   )
 }
@@ -78,7 +98,7 @@ const RightGroup = styled.div`
   input{
     height: 60%;
     width: 100%;
-    font-size: 2em;
+    font-size: 1.75em;
     padding-left: 3%;
     border-radius: 20px;
     outline: none;
