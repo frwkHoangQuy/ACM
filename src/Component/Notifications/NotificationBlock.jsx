@@ -3,14 +3,13 @@ import styled from "styled-components";
 import { format } from 'date-fns';
 
 const NotificationBlock = ({ data }) => {
-  console.log(data)
   const { id, time, sender, notification, type } = data
   const formatTime = format(time, 'dd/MM/yyyy HH:mm')
   const [dayDate, dayTime] = formatTime.split(' ');
 
   return (
     <BlockStyled>
-      <DayTime>Time: {dayTime}</DayTime>
+      <DayTime>At: {dayTime}</DayTime>
       <Status> [{type}]</Status>
       <Sender>From : {sender}</Sender>
       <DayDate>Date: {dayDate}</DayDate>
@@ -52,7 +51,7 @@ const DayDate = styled.div`
 `;
 
 const DayTime = styled.div`
-  width: 8%;
+  width: 6%;
   color: black;
 `;
 
@@ -70,7 +69,7 @@ const Content = styled.div`
   color: black;
   margin: 0;
   flex-grow: 1;
-  width: 40%;
+  width: 42%;
 `;
 
 const ButtonBlock = styled.div`
