@@ -1,72 +1,53 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getNotificationsTypes } from "../../API/Notification";
+import useFetchNotificationTypes from "../../Hooks/Notification/useFetchNotificationTypes";
+import useNotificationStore from "../../Context";
 
-const Interact = ({ setIsDisplayInteract }) => {
-  const [notificationType, setNotificationType] = useState([]);
-  const [input, setInput] = useState({
-    type: 'H',
-    title: "",
-    content: ""
-  });
+const Interact = () => {
+  const { notificationTypes, loading, error } = useFetchNotificationTypes()
+  const { interactInput, editInteract, cancelInteract, interactType, setInteractType } = useNotificationStore()
 
-  const getTypes = async () => {
-    try {
-      const response = await getNotificationsTypes();
-      setNotificationType(response.data);
-    } catch (error) {
-      console.log(error);
+  const handleBackClick = () => {
+    setInteractType("Create");
+    cancelInteract();
+  };
+
+  const handleSaveClick = () => {
+    if (interactType == "Edit") {
+      console.log("Edit")
+    }
+    else {
+      console.log("Create");
     }
   };
 
-  const handleBackClick = () => {
-    setIsDisplayInteract(false);
-  };
-
-  const handleCreateClick = () => {
-    console.log(input)
-  };
-
   const handleTitleChange = (e) => {
-    setInput({
-      ...input,
-      title: e.target.value,
-    });
+    editInteract({ title: e.target.value });
   };
 
   const handleTypeChange = (e) => {
-    setInput({
-      ...input,
-      type: e.target.value,
-    });
+    editInteract({ type: e.target.value });
   };
 
   const handleContentChange = (e) => {
-    setInput({
-      ...input,
-      content: e.target.value,
-    });
+    editInteract({ content: e.target.value });
   };
-
-  useEffect(() => {
-    getTypes();
-  }, []);
 
   return (
     <InteractStyled>
       <Label>Type</Label>
-      <Select value={input.type} onChange={handleTypeChange}>
-        {notificationType.map((value, index) => (
+      <Select value={interactInput.type} onChange={handleTypeChange}>
+        {notificationTypes.map((value, index) => (
           <option key={index} value={value.name}>{value.name}</option>
         ))}
       </Select>
       <Label>Title</Label>
-      <Input value={input.title} onChange={handleTitleChange}></Input>
+      <Input value={interactInput.title} onChange={handleTitleChange}></Input>
       <Label>Content</Label>
-      <TextArea value={input.content} onChange={handleContentChange}></TextArea>
+      <TextArea value={interactInput.content} onChange={handleContentChange}></TextArea>
       <BackCreateButton>
         <div className="Back" onClick={handleBackClick}>Back</div>
-        <div className="Create" onClick={handleCreateClick}>Create</div>
+        <div className="Create" onClick={handleSaveClick}>{interactType}</div>
       </BackCreateButton>
     </InteractStyled>
   );

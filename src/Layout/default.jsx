@@ -30,7 +30,6 @@ const DefaultLayoutComponent = (p) => {
 
     const { openOverlay, closeOverlay } = useContext(OverlayContext)
 
-    // const 
 
     const hdleClickOverLay = () => {
         if (isOpenMenu) return toggleSideBar(false)
