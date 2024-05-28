@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NotificationBlock from "../../Component/Notifications/NotificationBlock";
 import Interact from "../../Component/Notifications/Interact";
 import { NotificationStyled, Header, LeftGroup, RightGroup, Create } from "./Notification.styled";
@@ -6,10 +6,11 @@ import useFetchNotification from "../../Hooks/Notification/useFetchNotifications
 import useNotificationStore from "../../Context";
 
 const Notification = () => {
-  const { isDisplayInteract, displayInteract, setInteractType, interactType } = useNotificationStore();
+  const { isDisplayInteract, displayInteract, setInteractType, interactType, createInteract } = useNotificationStore();
   const { notifications, loading, error } = useFetchNotification();
 
   const handleCreateClick = () => {
+    createInteract();
     setInteractType("Create");
     displayInteract();
   };

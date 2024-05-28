@@ -17,6 +17,13 @@ const useNotificationStore = create((set) => ({
       ...updatedFields,
     }
   })),
+  createInteract: () => set(() => ({
+    interactInput: {
+      type: '',
+      title: "",
+      content: ""
+    }
+  })),
   isDisplayContent: false,
   content: {
     date: "",
@@ -37,6 +44,8 @@ const useNotificationStore = create((set) => ({
   selectedNotificationId: null,
   selectNotification: (id) => set(() => ({ selectedNotificationId: id })),
   clearNotification: () => set(() => ({ selectedNotificationId: null })),
+  userId: "550e8400-e29b-41d4-a716-446655440006",
+  setUserId: (id) => set(() => ({ userId: id }))
 }));
 
 export default useNotificationStore;

@@ -7,3 +7,7 @@ export const getNotifications = () => {
 export const getNotificationsTypes = () => {
   return axiosInstance.get('notifications/types/')
 }
+
+export const createNotification = (requestData) => {
+  return axiosInstance.post('notifications/create/', requestData)
+};

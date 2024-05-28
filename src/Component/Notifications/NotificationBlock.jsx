@@ -4,7 +4,11 @@ import { format } from 'date-fns';
 import useNotificationStore from "../../Context";
 
 const NotificationBlock = ({ data }) => {
-  const { editInteract, displayInteract, setInteractType, isDisplayContent, toggleContent, showContent, selectedNotificationId } = useNotificationStore();
+  const {
+    editInteract, displayInteract, setInteractType,
+    isDisplayContent, toggleContent, showContent, selectedNotificationId,
+    setUserId
+  } = useNotificationStore();
   const { id, time, sender, title, type, content } = data;
   const formatTime = format(time, 'dd/MM/yyyy HH:mm');
   const [dayDate, dayTime] = formatTime.split(' ');
