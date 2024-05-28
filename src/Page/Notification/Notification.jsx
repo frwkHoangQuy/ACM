@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import NotificationBlock from "../../Component/Notifications/NotificationBlock";
 import Interact from "../../Component/Notifications/Interact";
+import { Loading } from "../Loading";
+import { Error } from "../Error";
 import { NotificationStyled, Header, LeftGroup, RightGroup, Create } from "./Notification.styled";
 import useFetchNotification from "../../Hooks/Notification/useFetchNotifications";
 import useNotificationStore from "../../Context";
@@ -14,6 +16,9 @@ const Notification = () => {
     setInteractType("Create");
     displayInteract();
   };
+
+  if (error) return <Error error={error}></Error>
+  if (loading) return <Loading></Loading>;
 
   return (
     <NotificationStyled>
@@ -31,8 +36,8 @@ const Notification = () => {
           <input placeholder="Find something ..." />
         </RightGroup>
       </Header>
-      <Create onClick={handleCreateClick}>
-        <button disabled={interactType !== "Create"}>Create</button>
+      <Create>
+        <button onClick={handleCreateClick} disabled={interactType !== "Create"}>Create</button>
       </Create>
       {isDisplayInteract ? (
         <Interact />
