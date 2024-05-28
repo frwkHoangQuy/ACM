@@ -3,6 +3,7 @@ import create from 'zustand';
 const useNotificationStore = create((set) => ({
   isDisplayInteract: false,
   interactInput: {
+    id: "",
     type: '',
     title: "",
     content: ""

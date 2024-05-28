@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { format } from 'date-fns';
 import useNotificationStore from "../../Context";
+import { deleteNotification } from "../../API/Notification";
+
 
 const NotificationBlock = ({ data }) => {
   const {
@@ -17,6 +19,7 @@ const NotificationBlock = ({ data }) => {
     setInteractType("Edit");
     displayInteract();
     editInteract({
+      id: id,
       type: data.type,
       title: data.title,
       content: data.content,
@@ -38,6 +41,10 @@ const NotificationBlock = ({ data }) => {
     }
   };
 
+  const handleDeleteClick = () => {
+    deleteNotification(id);
+  }
+
   return (
     <FullContent>
       <BlockStyled>
@@ -49,7 +56,7 @@ const NotificationBlock = ({ data }) => {
         <ButtonBlock>
           <p className="Read" onClick={handleReadClick}>Read</p>
           <p className="Edit" onClick={handleEditClick}>Edit</p>
-          <p className="Delete">Delete</p>
+          <p className="Delete" onClick={handleDeleteClick}>Delete</p>
         </ButtonBlock>
       </BlockStyled>
       {selectedNotificationId === id && isDisplayContent && (

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import useFetchNotificationTypes from "../../Hooks/Notification/useFetchNotificationTypes";
 import useNotificationStore from "../../Context";
-import { createNotification } from "../../API/Notification";
+import { createNotification, updateNotification } from "../../API/Notification";
 
 const Interact = () => {
   const { notificationTypes, loading, error } = useFetchNotificationTypes();
@@ -24,6 +24,13 @@ const Interact = () => {
       }
     };
     if (interactType === "Edit") {
+      updateNotification(interactInput.id, requestData)
+        .then(data => {
+          console.log('Notification update successfully:', data);
+        })
+        .catch(error => {
+          console.error('Error updating notification:', error);
+        });
     } else {
       createNotification(requestData)
         .then(data => {
