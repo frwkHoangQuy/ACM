@@ -9,7 +9,6 @@ const NotificationBlock = ({ data }) => {
   const {
     editInteract, displayInteract, setInteractType,
     isDisplayContent, toggleContent, showContent, selectedNotificationId,
-    setUserId
   } = useNotificationStore();
   const { id, time, sender, title, type, content } = data;
   const formatTime = format(time, 'dd/MM/yyyy HH:mm');
@@ -41,8 +40,9 @@ const NotificationBlock = ({ data }) => {
     }
   };
 
-  const handleDeleteClick = () => {
-    deleteNotification(id);
+  const handleDeleteClick = async () => {
+    await deleteNotification(id);
+    location.reload();
   }
 
   return (

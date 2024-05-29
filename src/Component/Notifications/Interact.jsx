@@ -3,6 +3,8 @@ import styled from "styled-components";
 import useFetchNotificationTypes from "../../Hooks/Notification/useFetchNotificationTypes";
 import useNotificationStore from "../../Context";
 import { createNotification, updateNotification } from "../../API/Notification";
+import { Loading } from "../../Page/Loading";
+import { Error } from "../../Page/Error";
 
 const Interact = () => {
   const { notificationTypes, loading, error } = useFetchNotificationTypes();
@@ -11,10 +13,9 @@ const Interact = () => {
   const handleBackClick = async () => {
     setInteractType("Create");
     cancelInteract();
-    location.reload();
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
     const requestData = {
       employee_id: userId,
       type: interactInput.type,
@@ -24,7 +25,7 @@ const Interact = () => {
       }
     };
     if (interactType === "Edit") {
-      updateNotification(interactInput.id, requestData)
+      await updateNotification(interactInput.id, requestData)
         .then(data => {
           console.log('Notification update successfully:', data);
         })
@@ -32,7 +33,7 @@ const Interact = () => {
           console.error('Error updating notification:', error);
         });
     } else {
-      createNotification(requestData)
+      await createNotification(requestData)
         .then(data => {
           console.log('Notification created successfully:', data);
         })
@@ -40,6 +41,7 @@ const Interact = () => {
           console.error('Error creating notification:', error);
         });
     }
+    location.reload();
   };
 
   const handleTitleChange = (e) => {
@@ -54,6 +56,8 @@ const Interact = () => {
     editInteract({ content: e.target.value });
   };
 
+  if (loading) return <Loading></Loading>
+  if (error) return <Error error={error}></Error>
   return (
     <InteractStyled>
       <Label>Type</Label>

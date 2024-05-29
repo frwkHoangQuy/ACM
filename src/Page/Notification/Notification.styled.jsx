@@ -78,9 +78,8 @@ export const LeftGroup = styled.div`
     }
 
     option:checked {
-      /* CSS cho tùy chọn đã được chọn */
       font-weight: bold;
-      color: #a6ff7d; /* Ví dụ */
+      color: #a6ff7d; 
     }
   }
 `;

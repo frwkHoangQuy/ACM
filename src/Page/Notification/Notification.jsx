@@ -5,18 +5,19 @@ import { Loading } from "../Loading";
 import { Error } from "../Error";
 import { NotificationStyled, Header, LeftGroup, RightGroup, Create } from "./Notification.styled";
 import useFetchNotification from "../../Hooks/Notification/useFetchNotifications";
-import { useSortNotifications } from "../../Hooks/Notification/useSortNotification";
+import { useFilterNotifications } from "../../Hooks/Notification/useFilterNotifications";
 import useNotificationStore from "../../Context";
 
 const Notification = () => {
   const { isDisplayInteract, displayInteract, setInteractType, interactType, createInteract, sortMethod, setSortMethod } = useNotificationStore();
   const { notifications, loading, error } = useFetchNotification();
-  const [sortedNotifications, setSortedNotifications] = useState([]);
+  const [filteredNotifications, setFilteredNotifications] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
-    const sorted = useSortNotifications(notifications, sortMethod);
-    setSortedNotifications(sorted);
-  }, [notifications, sortMethod]);
+    const filtered = useFilterNotifications(notifications, sortMethod, searchInput);
+    setFilteredNotifications(filtered);
+  }, [notifications, sortMethod, searchInput]);
 
   const handleCreateClick = () => {
     createInteract();
@@ -28,8 +29,12 @@ const Notification = () => {
     setSortMethod(e.target.value);
   };
 
-  if (error) return <Error error={error}></Error>
-  if (loading) return <Loading></Loading>;
+  const handleSearchInput = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  if (error) return <Error error={error} />;
+  if (loading) return <Loading />;
 
   return (
     <NotificationStyled>
@@ -46,7 +51,7 @@ const Notification = () => {
           </select>
         </LeftGroup>
         <RightGroup>
-          <input placeholder="Find something ..." />
+          <input placeholder="Find something ..." onChange={handleSearchInput} />
         </RightGroup>
       </Header>
       <Create>
@@ -55,7 +60,7 @@ const Notification = () => {
       {isDisplayInteract ? (
         <Interact />
       ) : (
-        sortedNotifications.map((value, index) => (
+        filteredNotifications.map((value, index) => (
           <NotificationBlock key={index} data={value} />
         ))
       )}
