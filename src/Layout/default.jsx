@@ -82,7 +82,7 @@ const DftLaySty = styled.div`
             @media (min-width: 769px) {
                 height: 100vh;
             }
-            width: 96%;
+            width: 100%;
             padding-left: 2%;
             padding-right: 2%;
         }
