@@ -66,8 +66,24 @@ export const LeftGroup = styled.div`
     &:hover {
       cursor: pointer;
     }
+
+    /* CSS cho các tùy chọn */
+    option {
+      font-size: 0.75em;
+      color: black;
+    }
+
+    option:hover {
+      background-color: lightgray;
+    }
+
+    option:checked {
+      /* CSS cho tùy chọn đã được chọn */
+      font-weight: bold;
+      color: #a6ff7d; /* Ví dụ */
+    }
   }
-`
+`;
 
 export const RightGroup = styled.div`
   height: 100%;

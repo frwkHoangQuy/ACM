@@ -1,6 +1,8 @@
 import create from 'zustand';
 
 const useNotificationStore = create((set) => ({
+  sortMethod: "newest to oldest",
+  setSortMethod: (method) => set(() => ({ sortMethod: method })),
   isDisplayInteract: false,
   interactInput: {
     id: "",
