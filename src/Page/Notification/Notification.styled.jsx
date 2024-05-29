@@ -4,6 +4,10 @@ export const NotificationStyled = styled.div`
   user-select: none;
   width: 100%;
   height: 100%;
+  overflow: scroll;
+  &::-webkit-scrollbar{
+      display: none;
+    }
 `
 
 export const Header = styled.div`
@@ -62,8 +66,23 @@ export const LeftGroup = styled.div`
     &:hover {
       cursor: pointer;
     }
+
+    /* CSS cho các tùy chọn */
+    option {
+      font-size: 0.75em;
+      color: black;
+    }
+
+    option:hover {
+      background-color: lightgray;
+    }
+
+    option:checked {
+      font-weight: bold;
+      color: #a6ff7d; 
+    }
   }
-`
+`;
 
 export const RightGroup = styled.div`
   height: 100%;

@@ -1,24 +1,47 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import useFetchNotificationTypes from "../../Hooks/Notification/useFetchNotificationTypes";
 import useNotificationStore from "../../Context";
+import { createNotification, updateNotification } from "../../API/Notification";
+import { Loading } from "../../Page/Loading";
+import { Error } from "../../Page/Error";
 
 const Interact = () => {
-  const { notificationTypes, loading, error } = useFetchNotificationTypes()
-  const { interactInput, editInteract, cancelInteract, interactType, setInteractType } = useNotificationStore()
+  const { notificationTypes, loading, error } = useFetchNotificationTypes();
+  const { interactInput, editInteract, cancelInteract, interactType, setInteractType, userId } = useNotificationStore();
 
-  const handleBackClick = () => {
+  const handleBackClick = async () => {
     setInteractType("Create");
     cancelInteract();
   };
 
-  const handleSaveClick = () => {
-    if (interactType == "Edit") {
-      console.log("Edit")
+  const handleSaveClick = async () => {
+    const requestData = {
+      employee_id: userId,
+      type: interactInput.type,
+      notification: {
+        title: interactInput.title,
+        content: interactInput.content
+      }
+    };
+    if (interactType === "Edit") {
+      await updateNotification(interactInput.id, requestData)
+        .then(data => {
+          console.log('Notification update successfully:', data);
+        })
+        .catch(error => {
+          console.error('Error updating notification:', error);
+        });
+    } else {
+      await createNotification(requestData)
+        .then(data => {
+          console.log('Notification created successfully:', data);
+        })
+        .catch(error => {
+          console.error('Error creating notification:', error);
+        });
     }
-    else {
-      console.log("Create");
-    }
+    location.reload();
   };
 
   const handleTitleChange = (e) => {
@@ -33,18 +56,21 @@ const Interact = () => {
     editInteract({ content: e.target.value });
   };
 
+  if (loading) return <Loading></Loading>
+  if (error) return <Error error={error}></Error>
   return (
     <InteractStyled>
       <Label>Type</Label>
       <Select value={interactInput.type} onChange={handleTypeChange}>
-        {notificationTypes.map((value, index) => (
-          <option key={index} value={value.name}>{value.name}</option>
+        <option disabled></option>
+        {notificationTypes.map((value) => (
+          <option key={value.id} value={value.name}>{value.name}</option>
         ))}
       </Select>
       <Label>Title</Label>
-      <Input value={interactInput.title} onChange={handleTitleChange}></Input>
+      <Input value={interactInput.title} onChange={handleTitleChange} />
       <Label>Content</Label>
-      <TextArea value={interactInput.content} onChange={handleContentChange}></TextArea>
+      <TextArea value={interactInput.content} onChange={handleContentChange} />
       <BackCreateButton>
         <div className="Back" onClick={handleBackClick}>Back</div>
         <div className="Create" onClick={handleSaveClick}>{interactType}</div>
