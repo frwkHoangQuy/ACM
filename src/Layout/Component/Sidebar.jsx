@@ -12,7 +12,7 @@ const Sidebar = (p) => {
 
     const menuItems = [
         { label: 'Trang chủ', icon: Icon.home, link: paths.home},
-        { label: 'Tác vụ', icon: Icon.setting, link: paths.planner},
+        { label: 'Meeting', icon: Icon.setting, link: paths.meeting},
     ];
 
     const { device } = useContext(DeviceContext)
