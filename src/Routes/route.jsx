@@ -1,7 +1,7 @@
 import DefaultLayout from "../Layout/default"
 import Home from "../Page/Home"
 import NoPage from "../Page/NoPage"
-import Login from "../Page/Login"
+import Login from "../Page/Login/Login"
 import Notification from "../Page/Notification/Notification"
 import paths from "./path"
 
