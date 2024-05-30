@@ -8,3 +8,11 @@ export const login = async (username, password) => {
     throw new Error(error.response.data.message || 'Đăng nhập thất bại');
   }
 };
+
+export const AuthRegister  = (username, password, employee_id) => {
+  return axiosInstance.post('auth/register/', {username, password, employee_id})
+}
+
+export const AuthVerify = () => {
+  return axiosInstance.post('auth/verify-token/')
+}

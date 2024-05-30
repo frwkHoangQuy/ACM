@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthLogin } from '../../API/Authentication';
 import { LoginStyled } from './Login.styled';
 import { useLogin } from '../../Hooks/Login/useLogin';
 import { useRegister } from '../../Hooks/Login/useRegister';

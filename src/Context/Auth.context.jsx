@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login as loginService } from '../../services/authService';
+import axiosInstance from '../API/axiosInstance';
 
 const AuthContext = createContext();
 
@@ -11,9 +12,23 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = sessionStorage.getItem('token');
     if (token) {
-      setUser({ token });
+      axiosInstance.post('auth/verify-token/', null, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }).then(response => {
+        if (response.data.valid) {
+          setUser({ token });
+        } else {
+          navigate('/');
+        }
+      }).catch(() => {
+        navigate('/');
+      });
+    } else {
+      navigate('/');
     }
-  }, []);
+  }, [navigate]);
 
   const login = async (username, password) => {
     const { access_token } = await loginService(username, password);
