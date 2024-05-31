@@ -7,8 +7,11 @@ import { NotificationStyled, Header, LeftGroup, RightGroup, Create } from "./Not
 import useFetchNotification from "../../Hooks/Notification/useFetchNotifications";
 import { useFilterNotifications } from "../../Hooks/Notification/useFilterNotifications";
 import useNotificationStore from "../../Context";
+import { useAuth } from "../../Context/Auth.context";
 
 const Notification = () => {
+  const { user } = useAuth()
+  console.log(user)
   const { isDisplayInteract, displayInteract, setInteractType, interactType, createInteract, sortMethod, setSortMethod } = useNotificationStore();
   const { notifications, loading, error } = useFetchNotification();
   const [filteredNotifications, setFilteredNotifications] = useState([]);
@@ -55,7 +58,11 @@ const Notification = () => {
         </RightGroup>
       </Header>
       <Create>
-        <button onClick={handleCreateClick} disabled={interactType !== "Create"}>Create</button>
+        {
+          user.role_name === "Admin" ?
+            <button onClick={handleCreateClick} disabled={interactType !== "Create"}>Create</button>
+            : <button disabled>Read</button>
+        }
       </Create>
       {isDisplayInteract ? (
         <Interact />
