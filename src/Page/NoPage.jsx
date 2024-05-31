@@ -9,8 +9,8 @@ const NoPage = () => {
 
 const NoPageStyled = styled.div`
    user-select: none;
-   width : 100vw;
-   height: 100vh;
+   width : 100%;
+   height: 100%;
    background-image: url(${defaultBackGround});
    display: flex;
    justify-content: center;

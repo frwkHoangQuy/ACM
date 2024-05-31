@@ -5,6 +5,7 @@ import Login from "../Page/Login/Login"
 import Notification from "../Page/Notification/Notification"
 import paths from "./path"
 import Meeting from "../Page/Metting/Meeting"
+import { Form } from "../Page/Form/Form"
 
 
 export const routes = [
@@ -33,8 +34,14 @@ export const routes = [
         exact: true,
     },
     {
+        name: "form",
+        page: <DefaultLayout><Form /></DefaultLayout>,
+        path: paths.Form,
+        exact: true,
+    },
+    {
         name: "noPage",
-        page: <NoPage />,
+        page: <DefaultLayout><NoPage /></DefaultLayout>,
         path: paths.noPage,
         exact: true,
     }

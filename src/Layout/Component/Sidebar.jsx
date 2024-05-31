@@ -1,4 +1,4 @@
-import { Icon } from "../../Assets/icon";
+import { Icon } from "../../assets/icon";
 
 import { motion } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
@@ -12,7 +12,8 @@ const Sidebar = (p) => {
 
     const menuItems = [
         { label: 'Trang chủ', icon: Icon.home, link: paths.home},
-        { label: 'Meeting', icon: Icon.setting, link: paths.meeting},
+        { label: 'Phòng họp', icon: Icon.meeting, link: paths.meeting},
+        { label: 'Biểu mẫu', icon: Icon.form, link: paths.Form},
     ];
 
     const { device } = useContext(DeviceContext)
