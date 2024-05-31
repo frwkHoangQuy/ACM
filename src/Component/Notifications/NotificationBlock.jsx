@@ -3,13 +3,15 @@ import styled from "styled-components";
 import { format } from 'date-fns';
 import useNotificationStore from "../../Context";
 import { deleteNotification } from "../../API/Notification";
-
+import { useAuth } from "../../Context/Auth.context";
 
 const NotificationBlock = ({ data }) => {
   const {
     editInteract, displayInteract, setInteractType,
     isDisplayContent, toggleContent, showContent, selectedNotificationId,
   } = useNotificationStore();
+
+  const { user } = useAuth()
   const { id, time, sender, title, type, content } = data;
   const formatTime = format(time, 'dd/MM/yyyy HH:mm');
   const [dayDate, dayTime] = formatTime.split(' ');
@@ -53,11 +55,18 @@ const NotificationBlock = ({ data }) => {
         <Sender>From : {sender}</Sender>
         <DayDate>Date: {dayDate}</DayDate>
         <Content>Title: {title}</Content>
-        <ButtonBlock>
-          <p className="Read" onClick={handleReadClick}>Read</p>
-          <p className="Edit" onClick={handleEditClick}>Edit</p>
-          <p className="Delete" onClick={handleDeleteClick}>Delete</p>
-        </ButtonBlock>
+        {
+          user.role_name === "Admin" ? (
+            <ButtonBlock>
+              <p className="Read" onClick={handleReadClick}>Read</p>
+              <p className="Edit" onClick={handleEditClick}>Edit</p>
+              <p className="Delete" onClick={handleDeleteClick}>Delete</p>
+            </ButtonBlock>) : (
+            <ButtonBlock>
+              <p className="Read" onClick={handleReadClick}>Read</p>
+            </ButtonBlock>
+          )
+        }
       </BlockStyled>
       {selectedNotificationId === id && isDisplayContent && (
         <Read>{content}</Read>
