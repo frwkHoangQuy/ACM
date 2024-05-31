@@ -1,5 +1,6 @@
 import create from 'zustand';
 
+
 const useNotificationStore = create((set) => ({
   sortMethod: "newest_to_oldest",
   setSortMethod: (method) => set(() => ({ sortMethod: method })),

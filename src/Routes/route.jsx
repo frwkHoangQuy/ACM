@@ -4,7 +4,7 @@ import NoPage from "../Page/NoPage"
 import Login from "../Page/Login/Login"
 import Notification from "../Page/Notification/Notification"
 import paths from "./path"
-import Meeting from "../Page/Meeting"
+import Meeting from "../Page/Metting/Meeting"
 
 
 export const routes = [

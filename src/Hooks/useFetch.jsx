@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 const useFetch = (fetchFunction) => {
   const [data, setdata] = useState([]);
@@ -20,7 +20,13 @@ const useFetch = (fetchFunction) => {
     fetchdata();
   }, [fetchFunction]);
 
-  return { data, loading, error };
+  const memoizedResult = useMemo(() => ({
+    data,
+    loading,
+    error
+  }), [data, loading, error]);
+
+  return { data: memoizedResult.data, loading: memoizedResult.loading, error: memoizedResult.error };
 };
 
 export default useFetch;
