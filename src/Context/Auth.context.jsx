@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login as loginService } from '../../services/authService';
+import { login as loginService } from '../services/authService';
 import axiosInstance from '../API/axiosInstance';
 
 const AuthContext = createContext();
@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
         }
       }).then(response => {
         if (response.data.valid) {
-          setUser({ token });
+          setUser(response.data.payload);
         } else {
           navigate('/');
         }

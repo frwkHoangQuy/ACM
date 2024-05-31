@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { AuthRegister } from "../../../services/authService";
+import { AuthRegister } from "../../services/authService"
 
 export const useRegister = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export const useRegister = () => {
 
   const handleEmployeeIdChange = (e) => {
     setEmployeeId(e.target.value);
-  };  
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

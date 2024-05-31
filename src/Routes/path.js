@@ -1,7 +1,7 @@
 const paths = {
     login: "/",
     home: "/home",
-    planner: "/planner",
+    meeting: "/meeting",
     notification: "/home/notification",
     noPage: "*",
 }

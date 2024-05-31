@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import "flatpickr/dist/themes/material_green.css";
 
 const GlobalStyles = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
