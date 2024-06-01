@@ -71,7 +71,7 @@ const Choice = styled.div`
         &:hover{
             cursor: pointer;
             transition: transform 0.5s ease;
-            color: #a6ff7d;
+            color: #007bff;
             transform: scale(1.1);
         }
     }

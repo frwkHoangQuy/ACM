@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { createBookingRoom } from "../../services/meetingService";
 import { useAuth } from "../../Context/Auth.context";
 import { deleteBookingRoom } from "../../services/meetingService";
+import 'flatpickr/dist/flatpickr.min.css'; 
 
 const Meeting = () => {
 

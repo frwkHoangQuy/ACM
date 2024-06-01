@@ -56,7 +56,7 @@ export const LeftGroup = styled.div`
     background-color: transparent;
     border: none;
     appearance: none;
-    color: #a6ff7d;
+    color: #007bff;
     font-size: 3em;
     font-weight: bold;
     display: flex;
@@ -79,7 +79,7 @@ export const LeftGroup = styled.div`
 
     option:checked {
       font-weight: bold;
-      color: #a6ff7d; 
+      color: #007bff; 
     }
   }
 `;

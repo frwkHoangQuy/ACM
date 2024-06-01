@@ -44,7 +44,6 @@ const NotificationBlock = ({ data }) => {
 
   const handleDeleteClick = async () => {
     await deleteNotification(id);
-    location.reload();
   }
 
   return (

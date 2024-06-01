@@ -7,7 +7,7 @@ import { Loading } from "../../Page/Loading";
 import { Error } from "../../Page/Error";
 
 const Interact = () => {
-  const { notificationTypes, loading, error } = useFetchNotificationTypes();
+  const { notificationTypes, loading, error, refetch } = useFetchNotificationTypes();
   const { interactInput, editInteract, cancelInteract, interactType, setInteractType, userId } = useNotificationStore();
 
   const handleBackClick = async () => {
@@ -41,7 +41,7 @@ const Interact = () => {
           console.error('Error creating notification:', error);
         });
     }
-    location.reload();
+    refetch();
   };
 
   const handleTitleChange = (e) => {
@@ -95,7 +95,7 @@ const InteractStyled = styled.div`
 `;
 
 const Label = styled.p`
-  color: #84ff7e;
+  color: #007bff; 
   font-size: 1.5em;
   height: auto;
   margin: 0;
@@ -137,7 +137,7 @@ const BackCreateButton = styled.div`
   .Back {
     margin: 1%;
     font-size: 1.5em;
-    color: #84ff7e;
+    color: #007bff;
     &:hover {
       cursor: pointer;
     }
@@ -145,7 +145,7 @@ const BackCreateButton = styled.div`
   .Create {
     margin: 1%;
     font-size: 1.5em;
-    color: #84ff7e;
+    color: #007bff;
     &:hover {
       cursor: pointer;
     }
