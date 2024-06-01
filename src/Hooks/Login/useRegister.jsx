@@ -24,7 +24,6 @@ export const useRegister = () => {
     e.preventDefault();
     try {
       await AuthRegister(username, password, employeeId)
-      console.log("Đăng ký thành công:", username, password, employeeId);
 
       navigate('/');
     } catch (error) {

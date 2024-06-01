@@ -12,8 +12,6 @@ export const DeviceProvider = (p) => {
   
     const device = useMedia(breakpoints, values, defaultValue);
   
-    console.log("device", device)
-
     const contextValue = {
         device: device
     }
