@@ -11,7 +11,6 @@ import { useAuth } from "../../Context/Auth.context";
 
 const Notification = () => {
   const { user } = useAuth()
-  console.log(user)
   const { isDisplayInteract, displayInteract, setInteractType, interactType, createInteract, sortMethod, setSortMethod } = useNotificationStore();
   const { notifications, loading, error } = useFetchNotification();
   const [filteredNotifications, setFilteredNotifications] = useState([]);

@@ -3,6 +3,8 @@ export const Container = styled.div`
     user-select: none;
     height: 100%;
     width: 100%;
+    padding-left: 2%;
+    padding-right: 2%;
 `
 
 export const Title = styled.h1`

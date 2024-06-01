@@ -3,7 +3,8 @@ const paths = {
     home: "/home",
     meeting: "/meeting",
     notification: "/home/notification",
-    Form: "/form", 
+    Form: "/form",
+    users: "/users",
     noPage: "*",
 }
 

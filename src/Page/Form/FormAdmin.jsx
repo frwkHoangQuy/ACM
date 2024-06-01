@@ -11,7 +11,6 @@ const FormAdmin = () => {
 
   const handleApprove = async (e, record) => {
     e.stopPropagation();
-    console.log(record.id)
     await updateForm(record.id, { status: "Approved" })
     refetch();
   };

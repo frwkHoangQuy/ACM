@@ -11,9 +11,10 @@ const Sidebar = (p) => {
     const { isopen, toggle } = p
 
     const menuItems = [
-        { label: 'Trang chủ', icon: Icon.home, link: paths.home},
-        { label: 'Phòng họp', icon: Icon.meeting, link: paths.meeting},
-        { label: 'Biểu mẫu', icon: Icon.form, link: paths.Form},
+        { label: 'Trang chủ', icon: Icon.home, link: paths.home },
+        { label: 'Phòng họp', icon: Icon.meeting, link: paths.meeting },
+        { label: 'Biểu mẫu', icon: Icon.form, link: paths.Form },
+        { label: 'Quản lý nhân viên', icon: Icon.user, link: paths.users },
     ];
 
     const { device } = useContext(DeviceContext)
@@ -47,36 +48,37 @@ const Sidebar = (p) => {
     }, []);
 
     return (
-        <SideCon 
-        initial={"closed"}
-        animate={isopen ? 'open' : 'closed'}
-        variants={SideStyle}
-        onMouseEnter={toggle(true)} onMouseLeave={toggle(false)}>
+        <SideCon
+            initial={"closed"}
+            animate={isopen ? 'open' : 'closed'}
+            variants={SideStyle}
+            onMouseEnter={toggle(true)} onMouseLeave={toggle(false)}>
             <div className="logo"></div>
             <SidebarMenu>
                 {menuItems.map((menuItem, idx) => (
-                    <SidebarMenuItem key={idx} 
-                                     onClick={() => handleSelect(menuItem.link)} 
-                                     className={select === menuItem.link && 'active'}
-                                     whileHover={{  x: "5px", 
-                                                    transition: { 
-                                                        duration: 1, 
-                                                        type: "spring" 
-                                                    }
-                                                }} >
+                    <SidebarMenuItem key={idx}
+                        onClick={() => handleSelect(menuItem.link)}
+                        className={select === menuItem.link && 'active'}
+                        whileHover={{
+                            x: "5px",
+                            transition: {
+                                duration: 1,
+                                type: "spring"
+                            }
+                        }} >
                         <SidebarLink to={menuItem.link}>
                             {<div className="icon-wrapper">
-                                <menuItem.icon className="icon"/>
+                                <menuItem.icon className="icon" />
                             </div>}
                             {/*  this may cause broken UI in item in sidebar when font-size change */}
                             <motion.span initial={{ opacity: 0, width: 0, height: 0 }}
-                                         animate={isopen ? { opacity: 1, marginLeft: "23px", width: "100%", height: "25px" } : { opacity: 0, width: 0, height: 0 }}
-                                         transition={{ duration: .2 }}
-                                        >{menuItem.label}</motion.span>
+                                animate={isopen ? { opacity: 1, marginLeft: "23px", width: "100%", height: "25px" } : { opacity: 0, width: 0, height: 0 }}
+                                transition={{ duration: .2 }}
+                            >{menuItem.label}</motion.span>
                         </SidebarLink>
                     </SidebarMenuItem>))}
             </SidebarMenu>
-        </SideCon> 
+        </SideCon>
     )
 }
 

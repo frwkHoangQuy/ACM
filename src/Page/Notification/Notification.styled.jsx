@@ -4,6 +4,8 @@ export const NotificationStyled = styled.div`
   user-select: none;
   width: 100%;
   height: 100%;
+  padding-left: 2%;
+  padding-right: 2%;
   overflow: scroll;
   &::-webkit-scrollbar{
       display: none;

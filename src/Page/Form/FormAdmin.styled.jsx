@@ -16,6 +16,8 @@ export const FormAdminStyled = styled.div`
   width: 100%;
   height: 100%;
   user-select: none;
+  padding-left: 2%;
+  padding-right: 2%;
 `
 
 export const CustomPagination = styled.div`

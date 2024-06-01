@@ -83,8 +83,8 @@ const DftLaySty = styled.div`
                 height: 100vh;
             }
             width: 100%;
-            padding-left: 2%;
-            padding-right: 2%;
+            /* padding-left: 2%;
+            padding-right: 2%; */
         }
     }
 
