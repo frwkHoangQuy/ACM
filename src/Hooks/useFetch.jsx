@@ -1,15 +1,17 @@
 import { useState, useEffect, useMemo } from "react";
 
 const useFetch = (fetchFunction) => {
-  const [data, setdata] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [refetchCount, setRefetchCount] = useState(0); 
 
   useEffect(() => {
-    const fetchdata = async () => {
+    const fetchData = async () => {
       try {
+        setLoading(true);
         const response = await fetchFunction();
-        setdata(response.data);
+        setData(response.data);
       } catch (error) {
         setError(error);
       } finally {
@@ -17,16 +19,21 @@ const useFetch = (fetchFunction) => {
       }
     };
 
-    fetchdata();
-  }, [fetchFunction]);
+    fetchData();
+  }, [fetchFunction, refetchCount]); 
+
+  const refetch = () => {
+    setRefetchCount(prevCount => prevCount + 1);
+  };
 
   const memoizedResult = useMemo(() => ({
     data,
     loading,
-    error
-  }), [data, loading, error]);
+    error,
+    refetch
+  }), [data, loading, error, refetch]);
 
-  return { data: memoizedResult.data, loading: memoizedResult.loading, error: memoizedResult.error };
+  return memoizedResult;
 };
 
 export default useFetch;

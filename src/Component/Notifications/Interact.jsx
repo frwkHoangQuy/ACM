@@ -7,7 +7,7 @@ import { Loading } from "../../Page/Loading";
 import { Error } from "../../Page/Error";
 
 const Interact = () => {
-  const { notificationTypes, loading, error } = useFetchNotificationTypes();
+  const { notificationTypes, loading, error, refetch } = useFetchNotificationTypes();
   const { interactInput, editInteract, cancelInteract, interactType, setInteractType, userId } = useNotificationStore();
 
   const handleBackClick = async () => {
@@ -41,7 +41,7 @@ const Interact = () => {
           console.error('Error creating notification:', error);
         });
     }
-    location.reload();
+    refetch();
   };
 
   const handleTitleChange = (e) => {

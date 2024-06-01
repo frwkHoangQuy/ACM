@@ -11,3 +11,11 @@ export const getFormType = () => {
 export const createForm = (data) => {
   return axiosInstance.post('forms/create/', data)
 }
+
+export const getForms = () => {
+  return axiosInstance.get('/forms/')
+}
+
+export const updateForm = (id, data) => {
+  return axiosInstance.patch(`/forms/update/${id}/`, data)
+}
