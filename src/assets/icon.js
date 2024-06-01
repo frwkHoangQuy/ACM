@@ -16,7 +16,7 @@ import { SiGumtree } from 'react-icons/si'
 import { RiCloseFill } from 'react-icons/ri'
 import { MdMeetingRoom } from 'react-icons/md';
 import { BiPaperPlane } from 'react-icons/bi';
-
+import { BiUser } from 'react-icons/bi';
 
 
 export const Icon = {
@@ -47,4 +47,5 @@ export const Icon = {
     x: RiCloseFill,
     meeting: MdMeetingRoom,
     form: BiPaperPlane,
+    user: BiUser,
 }

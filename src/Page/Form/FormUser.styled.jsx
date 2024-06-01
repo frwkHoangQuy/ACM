@@ -5,6 +5,8 @@ export const Container = styled.div`
   height: 100%;
   width: 100%;
   position: relative;
+  padding-left: 2%;
+  padding-right: 2%;
 `;
 
 export const Header = styled.div`
